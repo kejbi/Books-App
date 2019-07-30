@@ -24,9 +24,9 @@ nav a {
     color: aliceblue;
 }
 
-.start-page {
+.page {
     margin: auto;
-    margin-top: 5%;
+    margin-top: 30px;
     width: 80%;
     text-align: center;
 }
@@ -40,4 +40,87 @@ nav a {
     font-size: 80px;
     font-weight: 500;
     color: gray;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.legend {
+    border-bottom: 2px solid gray;
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 20px;
+    width: 300px;
+}
+
+.form-input {
+    width: 300px;
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+    border: solid 2px;
+    border-color: lightgray;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.form-input:active {
+    border-color: lightskyblue;
+}
+
+.incorrect {
+    border-color: lightcoral;
+}
+
+.button {
+    padding: 8px;
+    min-width: 100px;
+    border: none;
+    border: solid 2px rgb(68, 63, 63);
+    border-radius: 8px;
+    color: aliceblue;
+    background-color: rgb(109, 99, 99);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.alert {
+    width: 60%;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    height: 60px;
+    
+}
+
+.alert-fail {
+    background-color: lightcoral;
+    border: solid 2px crimson;
+    color: crimson;
+}
+
+.alert-success {
+    background-color: lightgreen;
+    border: solid 2px green;
+    color: green;
 }
