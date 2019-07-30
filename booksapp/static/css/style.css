@@ -1,6 +1,7 @@
 *{
     margin: 0px;
     padding: 0px;
+    font-family: 'Titillium Web', sans-serif;
 }
 
 nav {
@@ -21,4 +22,22 @@ nav ul {
 nav a {
     text-decoration: none;
     color: aliceblue;
+}
+
+.start-page {
+    margin: auto;
+    margin-top: 5%;
+    width: 80%;
+    text-align: center;
+}
+
+.start-title {
+    font-size: 100px;
+    font-weight: bold;
+}
+
+.start-subtitle {
+    font-size: 80px;
+    font-weight: 500;
+    color: gray;
 }
