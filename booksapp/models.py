@@ -1,6 +1,11 @@
-from booksapp import db
+from booksapp import db, login_manager
+from flask_login import UserMixin
 
-class User(db.Model):
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
@@ -10,7 +15,7 @@ class User(db.Model):
     def __repr__(self):
         return f"User({self.id}, {self.username})"
 
-class Review(db.Model):
+class Review(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     rating = db.Column(db.Integer, nullable=False)
     text = db.Column(db.Text)
@@ -20,7 +25,7 @@ class Review(db.Model):
     def __repr__(self):
         return f"Review({self.id}, {self.user_id}, {self.book_id})"
 
-class Book(db.Model):
+class Book(db.Model, UserMixin):
      id = db.Column(db.Integer, primary_key=True)
      title = db.Column(db.String(40), nullable=False)
      author = db.Column(db.String(40), nullable=False)

@@ -14,8 +14,13 @@
     <nav>
         <div class="logo"><a href="{{ url_for('start') }}"><i class="icon-book"></i> Books App</a></div>
         <ul>
-            <li><a href="#">Login</a></li>
-            <li><a href="{{ url_for('register') }}">Register</a></li>
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('account') }}">Account</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
         </ul>
     </nav>
     {% with messages = get_flashed_messages(with_categories=true) %}

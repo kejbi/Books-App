@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="page">
+        <form method="POST" action="">
+            {{form.hidden_tag()}}
+            <div class="form">
+                <legend class="legend">Login now!</legend>
+                <div class="form-group">
+                        {{ form.email.label(class="form-label") }}
+
+                        {% if form.email.errors %}
+                            {{ form.email(class="form-input incorrect") }}
+                            <div class="incorrect-feedback">
+                                {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.email(class="form-input") }}
+                        {% endif %}
+                </div>
+                <div class="form-group">
+                        {{ form.password.label(class="form-label") }}
+
+                        {% if form.password.errors %}
+                            {{ form.password(class="form-input incorrect") }}
+                            <div class="incorrect-feedback">
+                                {% for error in form.password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.password(class="form-input") }}
+                        {% endif %}
+                </div>
+                <div class="form-group">
+                        {{ form.submit(class="button ") }}
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

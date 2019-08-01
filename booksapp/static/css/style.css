@@ -101,6 +101,10 @@ nav a {
     cursor: pointer;
 }
 
+.incorrect-feedback {
+    color: crimson;
+}
+
 .alert {
     width: 60%;
     margin: auto;
