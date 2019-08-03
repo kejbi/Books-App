@@ -5,6 +5,13 @@
         <div class="page">
             <h1 class="start-title">Looking for a book?</h1>
             <h2 class="start-subtitle">Great news! You'll find it!</h2>
+            <form method="POST" action="" class="form">
+                {{ search_form.hidden_tag() }}
+                {{ search_form.content.label(class="start-form-label") }}
+                {{ search_form.content(class="start-form-input") }}
+                {{ search_form.submit(class="button ") }}
+            </form>
+            
         </div>
     </article>
 {% endblock %}

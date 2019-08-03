@@ -1,13 +1,21 @@
 from booksapp import app, db, bcrypt
 from flask import render_template, url_for, flash, redirect
-from booksapp.forms import RegistrationForm, LoginForm
-from booksapp.models import User
+from booksapp.forms import RegistrationForm, LoginForm, SearchingForm
+from booksapp.models import User, Book
 from flask_login import login_user, current_user, logout_user
 
+def search_books(phrase):
+     return Book.query.filter(Book.title.like(f'%{phrase}%') | Book.author.like(f'%{phrase}%') |
+                                  Book.isbn.like(f'%{phrase}%')).all()
+
 @app.route('/')
-@app.route('/start')
+@app.route('/start', methods = ['GET', 'POST'])
 def start():
-    return render_template('start.html')
+    search_form = SearchingForm()
+    if search_form.validate_on_submit():
+       return redirect(url_for('search_result', content=search_form.content.data))
+        
+    return render_template('start.html', search_form = search_form)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -48,3 +56,12 @@ def logout():
 @app.route('/account')
 def account():
     return render_template('start.html')
+
+@app.route('/searchresult/<content>', methods = ['GET', 'POST'])
+def search_result(content):
+    search_form = SearchingForm()
+    if search_form.validate_on_submit():
+        return redirect(url_for('search_result', content=search_form.content.data))
+    books = search_books(content)
+    
+    return render_template('search_result.html', books = books, search_form=search_form, content=content)

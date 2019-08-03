@@ -24,3 +24,7 @@ class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
+
+class SearchingForm(FlaskForm):
+    content = StringField('Search a book:', validators=[DataRequired()])
+    submit = SubmitField('Search')
