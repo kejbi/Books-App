@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User({self.id}, {self.username})"
 
-class Review(db.Model, UserMixin):
+class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     rating = db.Column(db.Integer, nullable=False)
     text = db.Column(db.Text)
@@ -25,7 +25,7 @@ class Review(db.Model, UserMixin):
     def __repr__(self):
         return f"Review({self.id}, {self.user_id}, {self.book_id})"
 
-class Book(db.Model, UserMixin):
+class Book(db.Model):
      id = db.Column(db.Integer, primary_key=True)
      title = db.Column(db.String(40), nullable=False)
      author = db.Column(db.String(40), nullable=False)

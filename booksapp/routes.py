@@ -1,7 +1,7 @@
 from booksapp import app, db, bcrypt
 from flask import render_template, url_for, flash, redirect
-from booksapp.forms import RegistrationForm, LoginForm, SearchingForm
-from booksapp.models import User, Book
+from booksapp.forms import RegistrationForm, LoginForm, SearchingForm, ReviewForm
+from booksapp.models import User, Book, Review
 from flask_login import login_user, current_user, logout_user
 
 def search_books(phrase):
@@ -65,3 +65,27 @@ def search_result(content):
     books = search_books(content)
     
     return render_template('search_result.html', books = books, search_form=search_form, content=content)
+
+@app.route('/book/<isbn>', methods = ['GET', 'POST'])
+def book_details(isbn):
+    book = Book.query.filter_by(isbn = isbn).first()
+    form = ReviewForm()
+    has_review = None           #when none it means user is not authenticated
+
+
+    if current_user.is_authenticated:
+        print('now')
+        review = Review.query.filter_by(user_id = current_user.id, book_id = book.id).first()
+        if review is None:
+            has_review = False
+        else:
+            has_review = True
+
+    if form.validate_on_submit():
+        review = Review(rating = int(form.rating.data), text = form.text.data, user_id = current_user.id, book_id = book.id)
+        print(review)
+        db.session.add(review)
+        db.session.commit()
+        return redirect(url_for('book_details', isbn=isbn))
+
+    return render_template('book_details.html', book = book, form = form, has_review = has_review)

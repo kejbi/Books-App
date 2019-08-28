@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <article>
+        <div class="page">
+
+            <div class="book-details">
+                <h1>Title: {{book.title}}</h1>
+                <h2>Author: {{book.author}}</h2>
+                <h2>ISBN: {{book.isbn}}</h2>
+                <h2>Year: {{book.year}}</h2>
+            </div>
+            {% if has_review == False %}
+                <form method="POST" action="" class="review-form">
+                    {{ form.hidden_tag() }}
+                    {{ form.rating.label() }}
+                    {{ form.rating(class="rating-input") }}
+                    {{ form.text.label() }}
+                    {{ form.text(class="text-input") }}
+                    {{ form.submit(class="button ") }}
+                </form>
+            {% elif has_review == True %}
+                <div class = "no-review">
+                    Thanks for your review!
+                </div>
+            {% else %}
+                <div class = "no-review">
+                    To give a review you have to log in!
+                </div>
+            {% endif %}
+            <div class = "reviews">
+            {% for review in book.reviews %}
+                <div class="card">
+                    <h2>Author: {{ review.author.username}}</h2>
+                    <h3>Rating: {{ review.rating }}</h3>
+                    <p>{{ review.text }}</p>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </article>
+{% endblock %}

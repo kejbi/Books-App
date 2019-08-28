@@ -11,11 +11,12 @@
             <div class="results">
                 {% if books %}
                 {% for book in books %}
-                    <div class="book-result">
-                        <h1>{{book.title}}</h1>
-                        <h2>{{book.author}}</h2>
-                        <h3>ISBN: {{book.isbn}} Year: {{book.year}}</h3>
-                    </div>
+                <a href="{{ url_for('book_details', isbn = book.isbn) }}" class="card">                    
+                    <h1>{{book.title}}</h1>
+                    <h2>{{book.author}}</h2>
+                    <h3>ISBN: {{book.isbn}} Year: {{book.year}}</h3>
+                </a>
+                    
                 {% endfor %}
                 {% else %}
                     <h1>No results for <span style="color: crimson">{{content}}</span>. Try with other phrase!</h1>
