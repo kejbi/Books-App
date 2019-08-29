@@ -1,0 +1,7 @@
+flask
+flask-sqlalchemy
+wtforms
+flask-wtf
+flask-login
+flask-bcrypt
+csv
