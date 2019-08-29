@@ -31,6 +31,7 @@ class Book(db.Model):
      author = db.Column(db.String(40), nullable=False)
      isbn = db.Column(db.String(40), nullable=False)
      year = db.Column(db.Integer, nullable=False)
+     rating = db.Column(db.Float, default = 0)
      reviews = db.relationship('Review', backref='book', lazy=True)
 
      def __repr__(self):

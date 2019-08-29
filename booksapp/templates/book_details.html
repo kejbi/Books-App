@@ -9,6 +9,8 @@
                 <h2>Author: {{book.author}}</h2>
                 <h2>ISBN: {{book.isbn}}</h2>
                 <h2>Year: {{book.year}}</h2>
+                <h2>Books App Rating: {{book.rating}}</h2>
+                <h2>Goodreads Rating: {{ api_rating }}</h2>
             </div>
             {% if has_review == False %}
                 <form method="POST" action="" class="review-form">
