@@ -4,6 +4,9 @@ from booksapp.models import Book
 
 #before running it make sure you created database
 
+db.drop_all()
+db.create_all()
+
 with open('books.csv', mode = 'r') as file:
     reader = csv.reader(file, delimiter=',')
     counter = 0
