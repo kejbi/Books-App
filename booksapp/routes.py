@@ -54,10 +54,6 @@ def logout():
     logout_user()
     return redirect(url_for('start'))
 
-@app.route('/account')
-def account():
-    return render_template('start.html')
-
 @app.route('/searchresult/<content>', methods = ['GET', 'POST'])
 def search_result(content):
     search_form = SearchingForm()
